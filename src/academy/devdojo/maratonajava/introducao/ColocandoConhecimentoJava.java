@@ -56,16 +56,23 @@ public class ColocandoConhecimentoJava {
     public static void escolhaDeFilme() {
         Scanner scanner = new Scanner(System.in);
         String[] movie = {"Batman", "Superman", "Cachorros"};
-        int escolha = scanner.nextInt();
 
-        System.out.println(". . . . . . . . . . . . . . . . . . . . .\n" +
+
+
+
+
+
+        System.out.println("\n. . . . . . . . . . . . . . . . . . . . .\n" +
                 ". . . . . . . . . .Filmes. . . . . . . . \n");
 
+        System.out.println("\nEscolha um filme de 1 a " + movie.length + ": ");
+
         for (int i = 0; i < movie.length; i++) {
-            System.out.print((i + 1) + ". " + movie[i]);
+            System.out.print((i + 1) + "." +movie[i]+"\n");
         }
 
-        System.out.println("\nEscolha um filme de 1 a " + movie.length + ": ");
+        //System.out.println("\nEscolha um filme de 1 a " + movie.length + ": ");
+        int escolha = scanner.nextInt();
 
         switch (escolha) {
             case 1:
