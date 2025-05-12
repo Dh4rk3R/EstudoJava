@@ -57,22 +57,15 @@ public class ColocandoConhecimentoJava {
         Scanner scanner = new Scanner(System.in);
         String[] movie = {"Batman", "Superman", "Cachorros"};
 
-
-
-
-
-
         System.out.println("\n. . . . . . . . . . . . . . . . . . . . .\n" +
-                ". . . . . . . . . .Filmes. . . . . . . . \n");
+                ". . . . . . . . .Filmes. . . . . . . . . \n");
 
-        System.out.println("\nEscolha um filme de 1 a " + movie.length + ": ");
+        System.out.println("Escolha um filme de 1 a " + movie.length + ": ");
 
         for (int i = 0; i < movie.length; i++) {
             System.out.print((i + 1) + "." +movie[i]+"\n");
-        }
+        }int escolha = scanner.nextInt();
 
-        //System.out.println("\nEscolha um filme de 1 a " + movie.length + ": ");
-        int escolha = scanner.nextInt();
 
         switch (escolha) {
             case 1:
@@ -88,13 +81,25 @@ public class ColocandoConhecimentoJava {
                 System.out.println("Estamos sem mais opções!");
         }
 
+        //switch ()
     }
 
+
+
+    private static String consultaIdade(String idade){
+        Scanner scanner = new Scanner(System.in);
+        int age = 0 ;
+
+
+        return idade;
+    }
+
+
 }
-/**
- * private static String consultaIdade(String idade){
- * Ainda vai ser usada..
- * };
- */
+
+
+
+
+
 
 
