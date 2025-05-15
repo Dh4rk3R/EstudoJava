@@ -2,7 +2,7 @@ package academy.devdojo.maratonajava.introducao;
 
 import java.util.Scanner;
 
-public class ColocandoConhecimentoJava {
+public class ColocandoConhecimentoJavaPratic {
 
     public static void main(String[] args) throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
@@ -11,6 +11,8 @@ public class ColocandoConhecimentoJava {
         String validando = "Validando";
         String preparando = "Preparando";
 
+        String[] movie = {"Batman", "Superman", "Cachorros"};
+        int[] precos = {20, 20, 10}; // preços respectivos
 
         System.out.println(". . . . . . . . . . . . . . . . . . . . .\n" +
                 ". . . . . . . Cine Java!. . . . . . . . .\n" +
@@ -23,7 +25,8 @@ public class ColocandoConhecimentoJava {
 
         atribuirPontos(processando);
         Thread.sleep(1500);
-        escolhaDeFilme();
+
+        int escolha = escolhaDeFilme(movie);
         atribuirPontos(preparando);
         Thread.sleep(1500);
 
@@ -32,6 +35,44 @@ public class ColocandoConhecimentoJava {
         System.out.println("\nBem Vindo! " + nome + " Estamos checando o valor do Ticket! Um momento!");
         Thread.sleep(1500);
         atribuirPontos(validando);
+
+        if (escolha == 1 && age < 18) {
+            System.out.println("\nDesculpe " + nome + ", o filme escolhido é impróprio para menores de 18 anos.");
+            System.out.println("Infelizmente o ingresso não pode ser emitido.");
+            return; // encerra o programa
+        } else {
+            System.out.println("\nIdade compatível com o filme escolhido!");
+            atribuirPontos(processando);
+        }
+
+        // Entrada de quantidade de ingressos
+        System.out.println("\nQuantos ingressos deseja comprar?");
+        int quantidade = scanner.nextInt();
+
+        System.out.println("\nCalculando valor total...");
+        atribuirPontos(validando);
+
+        int valorTotal = precos[escolha - 1] * quantidade;
+        System.out.println("\nValor total: R$ " + valorTotal + ",00");
+
+        // Forma de pagamento
+        scanner.nextLine(); // limpar o buffer
+        System.out.println("\nEscolha a forma de pagamento (débito, crédito ou pix):");
+        String pagamento = scanner.nextLine();
+
+        System.out.println("\nForma de pagamento selecionada: " + pagamento);
+        System.out.println("Processando pagamento...");
+        atribuirPontos(processando);
+
+        System.out.println("\nPagamento aprovado com sucesso!");
+        System.out.println("\nResumo da compra:");
+        System.out.println("Nome: " + nome);
+        System.out.println("Filme: " + movie[escolha - 1]);
+        System.out.println("Quantidade de ingressos: " + quantidade);
+        System.out.println("Forma de pagamento: " + pagamento);
+        System.out.println("Total pago: R$ " + valorTotal + ",00");
+
+        System.out.println("\nAproveite o filme e volte sempre!");
         System.out.println("\nParei aqui...... ");
     }
 
@@ -46,16 +87,15 @@ public class ColocandoConhecimentoJava {
 
     private static void atribuirPontos(String base) throws InterruptedException {
         for (int i = 0; i < 10; i++) {
-            int numPontos = i % 4; // alterna entre 0, 1, 2 e 3
+            int numPontos = i % 4;
             String pontos = gerarPontos(numPontos);
-            System.out.print("\r" + base + pontos); // sobrescreve a linha
-            Thread.sleep(500); // espera 0,5 seg
+            System.out.print("\r" + base + pontos);
+            Thread.sleep(500);
         }
     }
 
-    public static void escolhaDeFilme() {
+    public static int escolhaDeFilme(String[] movie) {
         Scanner scanner = new Scanner(System.in);
-        String[] movie = {"Batman", "Superman", "Cachorros"};
 
         System.out.println("\n. . . . . . . . . . . . . . . . . . . . .\n" +
                 ". . . . . . . . .Filmes. . . . . . . . . \n");
@@ -63,9 +103,10 @@ public class ColocandoConhecimentoJava {
         System.out.println("Escolha um filme de 1 a " + movie.length + ": ");
 
         for (int i = 0; i < movie.length; i++) {
-            System.out.print((i + 1) + "." +movie[i]+"\n");
-        }int escolha = scanner.nextInt();
+            System.out.print((i + 1) + "." + movie[i] + "\n");
+        }
 
+        int escolha = scanner.nextInt();
 
         switch (escolha) {
             case 1:
@@ -81,25 +122,14 @@ public class ColocandoConhecimentoJava {
                 System.out.println("Estamos sem mais opções!");
         }
 
-        //switch ()
+        return escolha;
     }
 
-
-
-    private static String consultaIdade(String idade){
+    private static String consultaIdade(String idade) {
         Scanner scanner = new Scanner(System.in);
-        int age = 0 ;
-
+        int age = 0;
 
         return idade;
     }
 
-
 }
-
-
-
-
-
-
-
