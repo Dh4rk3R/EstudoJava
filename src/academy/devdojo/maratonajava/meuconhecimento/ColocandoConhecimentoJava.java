@@ -1,4 +1,4 @@
-package academy.devdojo.maratonajava.introducao;
+package academy.devdojo.maratonajava.meuconhecimento;
 import java.util.Scanner;
 
 public class ColocandoConhecimentoJava {
@@ -21,7 +21,7 @@ public class ColocandoConhecimentoJava {
 
         System.out.println("Digite seu nome:");
         String nome = scanner.nextLine();
-        System.out.println("Olá " + nome + ". Vamos comprar uns ingressos!");
+        System.out.println("Olá " + nome + ", Vamos comprar uns ingressos!");
 
         atribuirPontos(processando);
         Thread.sleep(1500);
@@ -32,18 +32,18 @@ public class ColocandoConhecimentoJava {
 
         System.out.println("\nPor gentileza, insira a idade?");
         int age = scanner.nextInt();
-        System.out.println("\nBem Vindo! " + nome + " Estamos checando algumas coisas! Um momento!");
+        System.out.println("\n"+ nome + " Estamos checando algumas coisas! Um momento!");
         Thread.sleep(1500);
         atribuirPontos(validando);
 
-        if (escolha == 1 && age < 18) {
+        try {
+            validaIdade(escolha, age, nome, processando); // encerra o programa
+        } catch (Exception e) {
             System.out.println("\nDesculpe " + nome + ", o filme escolhido é impróprio para menores de 18 anos.");
             System.out.println("\nInfelizmente o ingresso não pode ser emitido.");
-            return; // encerra o programa
-        } else {
-            System.out.println("\nIdade compatível com o filme escolhido!");
-            atribuirPontos(processando);
+            throw new RuntimeException(e);
         }
+
         // Quant
         System.out.println("\nQuantos ingressos deseja comprar?");
         int quantidade = scanner.nextInt();
@@ -68,6 +68,12 @@ public class ColocandoConhecimentoJava {
         System.out.println("Forma de pagamento: " + formaDePag);
         System.out.println("Total pago: R$ " + valorTotal + ",00");
         System.out.println("\nAproveite o filme e volte sempre!");
+    }
+
+    private static void validaIdade(int escolha, int age, String nome, String processando) throws Exception {
+        if (escolha == 1 && age < 18) {
+            throw new Exception("o filme escolhido é impróprio para menores de 18 anos.");
+        }
     }
 
     private static String gerarPontos(int quant) {
